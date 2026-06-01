@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-textColor-primary font-sans antialiased select-none overflow-x-hidden;
+    background-color: #0A0A0C;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Safe Area bounds for mobile-devices simulation */
+  .mobile-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+    @apply bg-background flex flex-col overflow-x-hidden;
+  }
+
+}
+
+@layer utilities {
+  /* Material-Design elevations */
+  .shadow-elevation-0 {
+    box-shadow: none;
+  }
+  .shadow-elevation-1 {
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+  }
+  .shadow-elevation-2 {
+    box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.3), 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+  .shadow-elevation-3 {
+    box-shadow: 0px 4px 12px 4px rgba(0, 0, 0, 0.4), 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Hide scrollbars but keep scrolling */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-element {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-effect 600ms linear;
+  background-color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+/* Tinder Card Swipes */
+.tinder-card {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+  user-select: none;
+  touch-action: none;
+}
+
+.tinder-card.swiping-left {
+  transform: translate(-150%, 0) rotate(-20deg) !important;
+  opacity: 0;
+}
+
+.tinder-card.swiping-right {
+  transform: translate(150%, 0) rotate(20deg) !important;
+  opacity: 0;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(30, 30, 36, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-accent {
+  background: rgba(168, 85, 247, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+/* QR Code scanning glow effect */
+@keyframes scan-animation {
+  0%, 100% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+}
+
+.scanner-line {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #06B6D4, transparent);
+  box-shadow: 0 0 10px #06B6D4;
+  animation: scan-animation 3s infinite linear;
+}
+
+/* Custom map pin glow */
+@keyframes pin-pulsate {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.pin-pulse {
+  position: absolute;
+  border: 3px solid #A855F7;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  left: -9px;
+  top: -9px;
+  animation: pin-pulsate 1.5s ease-out infinite;
+  opacity: 0;
+}
+
+/* Bottom Sheet states */
+.bottom-sheet-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+
+.bottom-sheet-content {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom animations for dynamic visual pages */
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
